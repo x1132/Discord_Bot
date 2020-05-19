@@ -1,5 +1,10 @@
 {
     "TOKEN":"",
     "Welcome_channel":"707116462057324566",
-    "Leave_channel":"707116543909298187"
+    "Leave_channel":"707116543909298187",
+    "pic":["E:\\Microsoft VS Code\\Discord_Bot\\pic\\雷姆.png",
+        "E:\\Microsoft VS Code\\Discord_Bot\\pic\\白.jpg"],
+    "url_pic":["https://cdn.pixabay.com/photo/2016/03/31/17/50/alphabet-word-images-1293937_960_720.png",
+        "https://images.pexels.com/photos/807806/pexels-photo-807806.jpeg?cs=srgb&dl=pexels-807806.jpg&fm=jpg"]
+    
 }

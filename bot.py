@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import json
+import random
 #開啟json文件
 with open('setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
@@ -29,5 +30,17 @@ async def on_member_remove(member):
 @bot.command()
 async def ping(ctx):
     await ctx.send(f"{round(bot.latency*1000)}毫秒")
+
+#隨機選取圖片(本機)
+@bot.command()
+async def 圖片(ctx):
+    random_pic = random.choice(jdata['pic'])
+    pic = discord.File(random_pic)
+    await ctx.send(file = pic)
+#隨機選取圖片(web)
+@bot.command()
+async def web(ctx):
+    random_pic = random.choice(jdata['url_pic'])
+    await ctx.send(random_pic)
 
 bot.run(jdata['TOKEN'])
