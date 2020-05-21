@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import json
 import random
+import os
+
 #開啟json文件
 with open('setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
@@ -24,23 +26,26 @@ async def on_member_join(member):
 async def on_member_remove(member):
     channel = bot.get_channel(int(jdata['Leave_channel']))
     await channel.send(f"{member}leave!")
+@bot.command()
+async def load(ctx,extension):
+    bot.load_extension(f'cmds.{extension}')
+    await ctx.send(f'Loaded {extension} done')
 
-#ctx = context(上下文)
-#round 表示四捨五入進位
 @bot.command()
-async def ping(ctx):
-    await ctx.send(f"{round(bot.latency*1000)}毫秒")
+async def unload(ctx,extension):
+    bot.unload_extension(f'cmds.{extension}')
+    await ctx.send(f'Un-Loaded {extension} done')
 
-#隨機選取圖片(本機)
 @bot.command()
-async def 圖片(ctx):
-    random_pic = random.choice(jdata['pic'])
-    pic = discord.File(random_pic)
-    await ctx.send(file = pic)
-#隨機選取圖片(web)
-@bot.command()
-async def web(ctx):
-    random_pic = random.choice(jdata['url_pic'])
-    await ctx.send(random_pic)
+async def reload(ctx,extension):
+    bot.reload_extension(f'cmds.{extension}')
+    await ctx.send(f'Re-Loaded {extension} done')
+#在cmds資料夾底下匯入.py的檔案
+for filename in os.listdir('./cmds'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cmds.{filename[:-3]}')
+
+if __name__=="__main__":
+    pass
 
 bot.run(jdata['TOKEN'])
