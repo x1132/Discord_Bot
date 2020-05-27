@@ -1,7 +1,11 @@
 import discord
 from discord.ext import commands
 from core.classes import Cog_Extension
-
+import json
+#開啟json文件
+with open('setting.json','r',encoding='utf8') as jfile:
+    jdata = json.load(jfile)
+    
 class Main(Cog_Extension):
     
     #ctx = context(上下文)

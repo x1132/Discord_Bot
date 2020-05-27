@@ -15,17 +15,6 @@ bot = commands.Bot(command_prefix='~')
 async def on_ready():
     print(">> Bot is online <<")
 
-#成員加入and離開機器人傳送訊息
-#await Bot回復
-@bot.event
-async def on_member_join(member):
-    channel = bot.get_channel(int(jdata['Welcome_channel']))
-    await channel.send(f"{member}join!")
-
-@bot.event
-async def on_member_remove(member):
-    channel = bot.get_channel(int(jdata['Leave_channel']))
-    await channel.send(f"{member}leave!")
 @bot.command()
 async def load(ctx,extension):
     bot.load_extension(f'cmds.{extension}')
